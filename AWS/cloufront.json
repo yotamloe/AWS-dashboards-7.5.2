@@ -1,0 +1,1551 @@
+{
+  "annotations": {
+    "list": [
+      {
+        "builtIn": 1,
+        "datasource": "-- Grafana --",
+        "enable": true,
+        "hide": true,
+        "iconColor": "rgba(0, 211, 255, 1)",
+        "name": "Annotations & Alerts",
+        "type": "dashboard"
+      }
+    ]
+  },
+  "description": "AWS CloudFront metrics",
+  "editable": true,
+  "gnetId": 674,
+  "graphTooltip": 0,
+  "id": 171,
+  "iteration": 1586071545369,
+  "links": [
+    {
+      "icon": "external link",
+      "tags": [],
+      "targetBlank": true,
+      "title": "AWS Cloudfront Metrics Docs",
+      "tooltip": "",
+      "type": "link",
+      "url": "https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/monitoring-using-cloudwatch.html"
+    },
+    {
+      "icon": "external link",
+      "tags": [],
+      "targetBlank": true,
+      "title": "MetricBeat AWS Module docs",
+      "type": "link",
+      "url": "https://www.elastic.co/guide/en/beats/metricbeat/master/metricbeat-module-aws.html"
+    }
+  ],
+  "panels": [
+    {
+      "collapsed": false,
+      "datasource": null,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 0
+      },
+      "id": 28,
+      "panels": [],
+      "repeat": null,
+      "title": "Distribution Requests",
+      "type": "row"
+    },
+    {
+      "cacheTimeout": null,
+      "colorBackground": false,
+      "colorPostfix": false,
+      "colorPrefix": false,
+      "colorValue": true,
+      "colors": [
+        "#37872D",
+        "#5794F2",
+        "#d44a3a"
+      ],
+      "datasource": "$account",
+      "description": "Total number of requests for the selected period and  CloudFront distribution",
+      "format": "short",
+      "gauge": {
+        "maxValue": 100,
+        "minValue": 0,
+        "show": false,
+        "thresholdLabels": false,
+        "thresholdMarkers": true
+      },
+      "gridPos": {
+        "h": 7,
+        "w": 6,
+        "x": 0,
+        "y": 1
+      },
+      "id": 26,
+      "interval": "",
+      "links": [],
+      "mappingType": 1,
+      "mappingTypes": [
+        {
+          "name": "value to text",
+          "value": 1
+        },
+        {
+          "name": "range to text",
+          "value": 2
+        }
+      ],
+      "maxDataPoints": 100,
+      "nullPointMode": "connected",
+      "nullText": null,
+      "options": {},
+      "postfix": "",
+      "postfixFontSize": "50%",
+      "prefix": "",
+      "prefixFontSize": "50%",
+      "rangeMaps": [
+        {
+          "from": "null",
+          "text": "N/A",
+          "to": "null"
+        }
+      ],
+      "sparkline": {
+        "fillColor": "rgba(31, 118, 189, 0.18)",
+        "full": false,
+        "lineColor": "#96D98D",
+        "show": false,
+        "ymax": null,
+        "ymin": null
+      },
+      "tableColumn": "aws.cloudwatch.dimensions.DistributionId",
+      "targets": [
+        {
+          "bucketAggs": [
+            {
+              "field": "@timestamp",
+              "id": "2",
+              "settings": {
+                "interval": "auto",
+                "min_doc_count": 1,
+                "trimEdges": 1
+              },
+              "type": "date_histogram"
+            }
+          ],
+          "metrics": [
+            {
+              "field": "aws.metrics.Requests.sum$SUM",
+              "id": "1",
+              "meta": {},
+              "settings": {},
+              "type": "max"
+            }
+          ],
+          "query": "aws.cloudwatch.dimensions.DistributionId:$distributionid",
+          "refId": "A",
+          "timeField": "@timestamp"
+        }
+      ],
+      "thresholds": "",
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Total number of requests",
+      "type": "singlestat",
+      "valueFontSize": "200%",
+      "valueMaps": [
+        {
+          "op": "=",
+          "text": "N/A",
+          "value": "null"
+        }
+      ],
+      "valueName": "total"
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "$account",
+      "description": "Total and average number of requests for the selected period and distribution",
+      "editable": true,
+      "error": false,
+      "fill": 1,
+      "fillGradient": 0,
+      "grid": {},
+      "gridPos": {
+        "h": 7,
+        "w": 18,
+        "x": 6,
+        "y": 1
+      },
+      "hiddenSeries": false,
+      "id": 16,
+      "interval": "",
+      "isNew": true,
+      "legend": {
+        "alignAsTable": true,
+        "avg": true,
+        "current": false,
+        "hideEmpty": true,
+        "hideZero": false,
+        "max": true,
+        "min": true,
+        "rightSide": true,
+        "show": false,
+        "sort": "current",
+        "sortDesc": true,
+        "total": true,
+        "values": true
+      },
+      "lines": true,
+      "linewidth": 1,
+      "links": [],
+      "nullPointMode": "connected",
+      "options": {
+        "dataLinks": []
+      },
+      "percentage": false,
+      "pointradius": 5,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "alias": "{{aws.cloudwatch.dimensions.DistributionId}}",
+          "application": {
+            "filter": ""
+          },
+          "bucketAggs": [
+            {
+              "fake": true,
+              "field": "aws.cloudwatch.dimensions.DistributionId",
+              "id": "3",
+              "settings": {
+                "min_doc_count": 1,
+                "order": "desc",
+                "orderBy": "_term",
+                "size": "0"
+              },
+              "type": "terms"
+            },
+            {
+              "field": "@timestamp",
+              "id": "2",
+              "settings": {
+                "interval": "auto",
+                "min_doc_count": 1,
+                "trimEdges": 0
+              },
+              "type": "date_histogram"
+            }
+          ],
+          "dimensions": {
+            "DistributionId": "$distributionid",
+            "Region": "us-east-1"
+          },
+          "expression": "",
+          "functions": [],
+          "group": {
+            "filter": ""
+          },
+          "hide": false,
+          "highResolution": false,
+          "host": {
+            "filter": ""
+          },
+          "id": "",
+          "item": {
+            "filter": ""
+          },
+          "metricName": "Requests",
+          "metrics": [
+            {
+              "field": "aws.metrics.Requests.sum$SUM",
+              "id": "1",
+              "meta": {},
+              "settings": {},
+              "type": "sum"
+            }
+          ],
+          "mode": 0,
+          "namespace": "AWS/CloudFront",
+          "options": {
+            "showDisabledItems": false
+          },
+          "period": "",
+          "query": "aws.cloudwatch.dimensions.DistributionId:$distributionid",
+          "refId": "A",
+          "region": "us-east-1",
+          "returnData": false,
+          "statistics": [
+            "Sum"
+          ],
+          "timeField": "@timestamp"
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "Requests by Distribution",
+      "tooltip": {
+        "msResolution": false,
+        "shared": true,
+        "sort": 0,
+        "value_type": "cumulative"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "format": "none",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": 0,
+          "show": true
+        },
+        {
+          "format": "none",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "collapsed": false,
+      "datasource": null,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 8
+      },
+      "id": 30,
+      "panels": [],
+      "repeat": null,
+      "title": "Distribution Data",
+      "type": "row"
+    },
+    {
+      "cacheTimeout": null,
+      "colorBackground": false,
+      "colorPostfix": false,
+      "colorPrefix": false,
+      "colorValue": true,
+      "colors": [
+        "#37872D",
+        "#5794F2",
+        "#d44a3a"
+      ],
+      "datasource": "$account",
+      "description": "Total amount of downloaded bytes for the selected period and CloudFront distributions",
+      "format": "decbytes",
+      "gauge": {
+        "maxValue": 100,
+        "minValue": 0,
+        "show": false,
+        "thresholdLabels": false,
+        "thresholdMarkers": true
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 6,
+        "x": 0,
+        "y": 9
+      },
+      "id": 24,
+      "interval": "",
+      "links": [],
+      "mappingType": 1,
+      "mappingTypes": [
+        {
+          "name": "value to text",
+          "value": 1
+        },
+        {
+          "name": "range to text",
+          "value": 2
+        }
+      ],
+      "maxDataPoints": 100,
+      "nullPointMode": "connected",
+      "nullText": null,
+      "options": {},
+      "postfix": "",
+      "postfixFontSize": "50%",
+      "prefix": "",
+      "prefixFontSize": "50%",
+      "rangeMaps": [
+        {
+          "from": "null",
+          "text": "N/A",
+          "to": "null"
+        }
+      ],
+      "sparkline": {
+        "fillColor": "rgba(31, 118, 189, 0.18)",
+        "full": false,
+        "lineColor": "#96D98D",
+        "show": true,
+        "ymax": null,
+        "ymin": null
+      },
+      "tableColumn": "",
+      "targets": [
+        {
+          "bucketAggs": [
+            {
+              "field": "@timestamp",
+              "id": "2",
+              "settings": {
+                "interval": "auto",
+                "min_doc_count": 1,
+                "trimEdges": 1
+              },
+              "type": "date_histogram"
+            }
+          ],
+          "dimensions": {
+            "DistributionId": "$distributionid",
+            "Region": "Global"
+          },
+          "expression": "",
+          "highResolution": false,
+          "id": "",
+          "metricName": "BytesDownloaded",
+          "metrics": [
+            {
+              "field": "aws.metrics.BytesDownloaded.sum$SUM",
+              "id": "1",
+              "meta": {},
+              "settings": {},
+              "type": "sum"
+            }
+          ],
+          "namespace": "AWS/CloudFront",
+          "period": "",
+          "query": "aws.cloudwatch.dimensions.DistributionId:$distributionid",
+          "refId": "A",
+          "region": "us-east-1",
+          "returnData": false,
+          "statistics": [
+            "Sum"
+          ],
+          "timeField": "@timestamp"
+        }
+      ],
+      "thresholds": "",
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Total downloaded bytes",
+      "type": "singlestat",
+      "valueFontSize": "80%",
+      "valueMaps": [
+        {
+          "op": "=",
+          "text": "N/A",
+          "value": "null"
+        }
+      ],
+      "valueName": "total"
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "$account",
+      "description": "Timeline of downloaded bytes for the selected period and distribution id",
+      "editable": true,
+      "error": false,
+      "fill": 1,
+      "fillGradient": 0,
+      "grid": {},
+      "gridPos": {
+        "h": 8,
+        "w": 18,
+        "x": 6,
+        "y": 9
+      },
+      "hiddenSeries": false,
+      "id": 18,
+      "interval": "",
+      "isNew": true,
+      "legend": {
+        "alignAsTable": true,
+        "avg": false,
+        "current": false,
+        "hideEmpty": true,
+        "hideZero": false,
+        "max": false,
+        "min": false,
+        "rightSide": true,
+        "show": true,
+        "sort": "current",
+        "sortDesc": true,
+        "total": true,
+        "values": true
+      },
+      "lines": true,
+      "linewidth": 1,
+      "links": [],
+      "nullPointMode": "connected",
+      "options": {
+        "dataLinks": []
+      },
+      "percentage": false,
+      "pointradius": 5,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "alias": "{{aws.cloudwatch.dimensions.DistributionId}}",
+          "application": {
+            "filter": ""
+          },
+          "bucketAggs": [
+            {
+              "fake": true,
+              "field": "aws.cloudwatch.dimensions.DistributionId",
+              "id": "3",
+              "settings": {
+                "min_doc_count": 1,
+                "order": "desc",
+                "orderBy": "_term",
+                "size": "0"
+              },
+              "type": "terms"
+            },
+            {
+              "field": "@timestamp",
+              "id": "2",
+              "settings": {
+                "interval": "auto",
+                "min_doc_count": 1,
+                "trimEdges": 0
+              },
+              "type": "date_histogram"
+            }
+          ],
+          "dimensions": {
+            "DistributionId": "$distributionid",
+            "Region": "Global"
+          },
+          "expression": "",
+          "functions": [],
+          "group": {
+            "filter": ""
+          },
+          "highResolution": false,
+          "host": {
+            "filter": ""
+          },
+          "id": "",
+          "item": {
+            "filter": ""
+          },
+          "metricName": "BytesDownloaded",
+          "metrics": [
+            {
+              "field": "aws.metrics.BytesDownloaded.sum$SUM",
+              "id": "1",
+              "meta": {},
+              "settings": {},
+              "type": "sum"
+            }
+          ],
+          "mode": 0,
+          "namespace": "AWS/CloudFront",
+          "options": {
+            "showDisabledItems": false
+          },
+          "period": "",
+          "query": "aws.cloudwatch.dimensions.DistributionId:$distributionid",
+          "refId": "A",
+          "region": "us-east-1",
+          "returnData": false,
+          "statistics": [
+            "Sum"
+          ],
+          "timeField": "@timestamp"
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "Downloaded Bytes by Distribution",
+      "tooltip": {
+        "msResolution": false,
+        "shared": true,
+        "sort": 0,
+        "value_type": "cumulative"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "format": "bytes",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": 0,
+          "show": true
+        },
+        {
+          "format": "s",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": false
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "cacheTimeout": null,
+      "colorBackground": false,
+      "colorValue": false,
+      "colors": [
+        "#73BF69",
+        "rgba(237, 129, 40, 0.89)",
+        "#d44a3a"
+      ],
+      "datasource": "$account",
+      "description": "Total Amount of uploaded bytes for the selected period and CloudFront distributions",
+      "format": "decbytes",
+      "gauge": {
+        "maxValue": 100,
+        "minValue": 0,
+        "show": false,
+        "thresholdLabels": false,
+        "thresholdMarkers": true
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 6,
+        "x": 0,
+        "y": 17
+      },
+      "id": 25,
+      "interval": "",
+      "links": [],
+      "mappingType": 1,
+      "mappingTypes": [
+        {
+          "name": "value to text",
+          "value": 1
+        },
+        {
+          "name": "range to text",
+          "value": 2
+        }
+      ],
+      "maxDataPoints": 100,
+      "maxPerRow": 4,
+      "nullPointMode": "connected",
+      "nullText": null,
+      "options": {},
+      "postfix": "",
+      "postfixFontSize": "50%",
+      "prefix": "",
+      "prefixFontSize": "50%",
+      "rangeMaps": [
+        {
+          "from": "null",
+          "text": "N/A",
+          "to": "null"
+        }
+      ],
+      "repeat": null,
+      "repeatDirection": "h",
+      "sparkline": {
+        "fillColor": "rgba(31, 118, 189, 0.18)",
+        "full": false,
+        "lineColor": "#73BF69",
+        "show": true,
+        "ymax": null,
+        "ymin": null
+      },
+      "tableColumn": "",
+      "targets": [
+        {
+          "bucketAggs": [
+            {
+              "field": "@timestamp",
+              "id": "2",
+              "settings": {
+                "interval": "auto",
+                "min_doc_count": 1,
+                "trimEdges": 1
+              },
+              "type": "date_histogram"
+            }
+          ],
+          "dimensions": {
+            "DistributionId": "$distributionid",
+            "Region": "Global"
+          },
+          "expression": "",
+          "highResolution": false,
+          "id": "",
+          "metricName": "BytesUploaded",
+          "metrics": [
+            {
+              "field": "aws.metrics.BytesUploaded$SUM",
+              "id": "1",
+              "meta": {},
+              "settings": {},
+              "type": "sum"
+            }
+          ],
+          "namespace": "AWS/CloudFront",
+          "period": "",
+          "query": "aws.cloudwatch.dimensions.DistributionId:$distributionid",
+          "refId": "A",
+          "region": "us-east-1",
+          "returnData": false,
+          "statistics": [
+            "Sum"
+          ],
+          "timeField": "@timestamp"
+        }
+      ],
+      "thresholds": "",
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Total uploaded bytes",
+      "type": "singlestat",
+      "valueFontSize": "80%",
+      "valueMaps": [
+        {
+          "op": "=",
+          "text": "N/A",
+          "value": "null"
+        }
+      ],
+      "valueName": "total"
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "$account",
+      "description": "Timeline of downloaded bytes for the selected period and distribution id",
+      "editable": true,
+      "error": false,
+      "fill": 1,
+      "fillGradient": 0,
+      "grid": {},
+      "gridPos": {
+        "h": 8,
+        "w": 18,
+        "x": 6,
+        "y": 17
+      },
+      "hiddenSeries": false,
+      "id": 35,
+      "interval": "",
+      "isNew": true,
+      "legend": {
+        "alignAsTable": true,
+        "avg": false,
+        "current": false,
+        "hideEmpty": true,
+        "hideZero": false,
+        "max": false,
+        "min": false,
+        "rightSide": true,
+        "show": true,
+        "sort": "current",
+        "sortDesc": true,
+        "total": true,
+        "values": true
+      },
+      "lines": true,
+      "linewidth": 1,
+      "links": [],
+      "nullPointMode": "connected",
+      "options": {
+        "dataLinks": []
+      },
+      "percentage": false,
+      "pointradius": 5,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "alias": "{{aws.cloudwatch.dimensions.DistributionId}}",
+          "application": {
+            "filter": ""
+          },
+          "bucketAggs": [
+            {
+              "fake": true,
+              "field": "aws.cloudwatch.dimensions.DistributionId",
+              "id": "3",
+              "settings": {
+                "min_doc_count": 1,
+                "order": "desc",
+                "orderBy": "_term",
+                "size": "10"
+              },
+              "type": "terms"
+            },
+            {
+              "field": "@timestamp",
+              "id": "2",
+              "settings": {
+                "interval": "auto",
+                "min_doc_count": 1,
+                "trimEdges": 0
+              },
+              "type": "date_histogram"
+            }
+          ],
+          "dimensions": {
+            "DistributionId": "$distributionid",
+            "Region": "Global"
+          },
+          "expression": "",
+          "functions": [],
+          "group": {
+            "filter": ""
+          },
+          "highResolution": false,
+          "host": {
+            "filter": ""
+          },
+          "id": "",
+          "item": {
+            "filter": ""
+          },
+          "metricName": "BytesUploaded",
+          "metrics": [
+            {
+              "field": "aws.metrics.BytesUploaded.sum$SUM",
+              "id": "1",
+              "meta": {},
+              "settings": {},
+              "type": "sum"
+            }
+          ],
+          "mode": 0,
+          "namespace": "AWS/CloudFront",
+          "options": {
+            "showDisabledItems": false
+          },
+          "period": "",
+          "query": "aws.cloudwatch.dimensions.DistributionId:$distributionid",
+          "refId": "B",
+          "region": "us-east-1",
+          "returnData": false,
+          "statistics": [
+            "Sum"
+          ],
+          "timeField": "@timestamp"
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "Uploaded Bytes by Distribution",
+      "tooltip": {
+        "msResolution": false,
+        "shared": true,
+        "sort": 0,
+        "value_type": "cumulative"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "format": "bytes",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": 0,
+          "show": true
+        },
+        {
+          "format": "s",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": false
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "collapsed": false,
+      "datasource": null,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 25
+      },
+      "id": 32,
+      "panels": [],
+      "repeat": null,
+      "title": "Distribution Errors",
+      "type": "row"
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "$account",
+      "description": "400 Errors on Cloudfront hits",
+      "editable": true,
+      "error": false,
+      "fill": 1,
+      "fillGradient": 0,
+      "grid": {},
+      "gridPos": {
+        "h": 10,
+        "w": 24,
+        "x": 0,
+        "y": 26
+      },
+      "hiddenSeries": false,
+      "id": 17,
+      "interval": "",
+      "isNew": true,
+      "legend": {
+        "alignAsTable": true,
+        "avg": true,
+        "current": true,
+        "hideZero": true,
+        "max": true,
+        "min": false,
+        "rightSide": true,
+        "show": false,
+        "sort": "current",
+        "sortDesc": true,
+        "total": false,
+        "values": true
+      },
+      "lines": true,
+      "linewidth": 2,
+      "links": [],
+      "nullPointMode": "connected",
+      "options": {
+        "dataLinks": []
+      },
+      "percentage": false,
+      "pointradius": 5,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "alias": "{{aws.cloudwatch.dimensions.DistributionId}}",
+          "application": {
+            "filter": ""
+          },
+          "bucketAggs": [
+            {
+              "fake": true,
+              "field": "aws.cloudwatch.dimensions.DistributionId",
+              "id": "3",
+              "settings": {
+                "min_doc_count": 1,
+                "order": "desc",
+                "orderBy": "_term",
+                "size": "10"
+              },
+              "type": "terms"
+            },
+            {
+              "field": "@timestamp",
+              "id": "2",
+              "settings": {
+                "interval": "auto",
+                "min_doc_count": 0,
+                "trimEdges": 0
+              },
+              "type": "date_histogram"
+            }
+          ],
+          "dimensions": {
+            "DistributionId": "$distributionid",
+            "Region": "Global"
+          },
+          "expression": "",
+          "functions": [],
+          "group": {
+            "filter": ""
+          },
+          "highResolution": false,
+          "host": {
+            "filter": ""
+          },
+          "id": "",
+          "item": {
+            "filter": ""
+          },
+          "metricName": "4xxErrorRate",
+          "metrics": [
+            {
+              "field": "aws.metrics.4xxErrorRate.sum$SUM",
+              "id": "1",
+              "meta": {},
+              "settings": {},
+              "type": "sum"
+            }
+          ],
+          "mode": 0,
+          "namespace": "AWS/CloudFront",
+          "options": {
+            "showDisabledItems": false
+          },
+          "period": "",
+          "query": "aws.cloudwatch.dimensions.DistributionId:$distributionid",
+          "refId": "A",
+          "region": "us-east-1",
+          "returnData": false,
+          "statistics": [
+            "Average"
+          ],
+          "timeField": "@timestamp"
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "4xx Error rate  by Distribution",
+      "tooltip": {
+        "msResolution": false,
+        "shared": true,
+        "sort": 0,
+        "value_type": "cumulative"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "decimals": null,
+          "format": "percent",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": 0,
+          "show": true
+        },
+        {
+          "format": "s",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": false
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "$account",
+      "description": "500 Errors on Cloudfront hits",
+      "editable": true,
+      "error": false,
+      "fill": 1,
+      "fillGradient": 0,
+      "grid": {},
+      "gridPos": {
+        "h": 10,
+        "w": 24,
+        "x": 0,
+        "y": 36
+      },
+      "id": 36,
+      "interval": "",
+      "isNew": true,
+      "legend": {
+        "alignAsTable": true,
+        "avg": true,
+        "current": true,
+        "hideEmpty": true,
+        "hideZero": false,
+        "max": true,
+        "min": true,
+        "rightSide": true,
+        "show": false,
+        "sort": "current",
+        "sortDesc": true,
+        "total": false,
+        "values": true
+      },
+      "lines": true,
+      "linewidth": 2,
+      "links": [],
+      "nullPointMode": "null as zero",
+      "options": {
+        "dataLinks": []
+      },
+      "percentage": false,
+      "pointradius": 5,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "alias": "{{aws.cloudwatch.dimensions.DistributionId}}",
+          "application": {
+            "filter": ""
+          },
+          "bucketAggs": [
+            {
+              "fake": true,
+              "field": "aws.cloudwatch.dimensions.DistributionId:$distributionid",
+              "id": "3",
+              "settings": {
+                "min_doc_count": 1,
+                "order": "desc",
+                "orderBy": "_term",
+                "size": "10"
+              },
+              "type": "terms"
+            },
+            {
+              "field": "@timestamp",
+              "id": "2",
+              "settings": {
+                "interval": "auto",
+                "min_doc_count": 0,
+                "trimEdges": 0
+              },
+              "type": "date_histogram"
+            }
+          ],
+          "dimensions": {
+            "DistributionId": "$distributionid",
+            "Region": "Global"
+          },
+          "expression": "",
+          "functions": [],
+          "group": {
+            "filter": ""
+          },
+          "highResolution": false,
+          "host": {
+            "filter": ""
+          },
+          "id": "",
+          "item": {
+            "filter": ""
+          },
+          "metricName": "5xxErrorRate",
+          "metrics": [
+            {
+              "field": "aws.metrics.5xxErrorRate.sum$SUM",
+              "id": "1",
+              "meta": {},
+              "settings": {},
+              "type": "sum"
+            }
+          ],
+          "mode": 0,
+          "namespace": "AWS/CloudFront",
+          "options": {
+            "showDisabledItems": false
+          },
+          "period": "",
+          "query": "aws.cloudwatch.dimensions.DistributionId:$distributionid",
+          "refId": "B",
+          "region": "us-east-1",
+          "returnData": false,
+          "statistics": [
+            "Average"
+          ],
+          "timeField": "@timestamp"
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "5xx Error rate by Distribution",
+      "tooltip": {
+        "msResolution": false,
+        "shared": true,
+        "sort": 0,
+        "value_type": "cumulative"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "decimals": null,
+          "format": "percent",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": 0,
+          "show": true
+        },
+        {
+          "format": "s",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": false
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "$account",
+      "description": "Total percentage of 400 and 500 errors for the selected period and distribution ",
+      "fill": 1,
+      "fillGradient": 0,
+      "gridPos": {
+        "h": 9,
+        "w": 24,
+        "x": 0,
+        "y": 46
+      },
+      "id": 22,
+      "interval": "",
+      "legend": {
+        "alignAsTable": true,
+        "avg": true,
+        "current": false,
+        "hideEmpty": true,
+        "hideZero": false,
+        "max": false,
+        "min": false,
+        "rightSide": true,
+        "show": true,
+        "sort": "avg",
+        "sortDesc": true,
+        "total": false,
+        "values": true
+      },
+      "lines": true,
+      "linewidth": 1,
+      "links": [],
+      "nullPointMode": "null as zero",
+      "options": {
+        "dataLinks": []
+      },
+      "percentage": false,
+      "pointradius": 2,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "alias": "{{aws.cloudwatch.dimensions.DistributionId}}",
+          "bucketAggs": [
+            {
+              "fake": true,
+              "field": "aws.cloudwatch.dimensions.DistributionId",
+              "id": "3",
+              "settings": {
+                "min_doc_count": 1,
+                "order": "desc",
+                "orderBy": "_term",
+                "size": "10"
+              },
+              "type": "terms"
+            },
+            {
+              "field": "@timestamp",
+              "id": "2",
+              "settings": {
+                "interval": "auto",
+                "min_doc_count": 0,
+                "offset": "",
+                "trimEdges": 0
+              },
+              "type": "date_histogram"
+            }
+          ],
+          "dimensions": {
+            "DistributionId": "$distributionid",
+            "Region": "Global"
+          },
+          "expression": "",
+          "highResolution": false,
+          "id": "",
+          "metricName": "TotalErrorRate",
+          "metrics": [
+            {
+              "field": "aws.metrics.TotalErrorRate.sum$SUM",
+              "id": "1",
+              "inlineScript": null,
+              "meta": {},
+              "pipelineAgg": "select metric",
+              "settings": {},
+              "type": "sum"
+            }
+          ],
+          "namespace": "AWS/CloudFront",
+          "period": "",
+          "query": "aws.cloudwatch.dimensions.DistributionId:$distributionid",
+          "refId": "A",
+          "region": "us-east-1",
+          "returnData": false,
+          "statistics": [
+            "Average"
+          ],
+          "timeField": "@timestamp"
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "4xx and 5xx error rate  by Distribution",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "format": "percent",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": false
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "collapsed": false,
+      "datasource": null,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 55
+      },
+      "id": 34,
+      "panels": [],
+      "title": "Documentation",
+      "type": "row"
+    },
+    {
+      "content": "# CloudFront Dashboard\n\nCloudFront is an AWS service that provides a CDN layer for your AWS applications.\n\nCloudFront instances are decribed by distributions, hence the DistributionId filter at the top of this dashboard.\n\nSelecting a DistributionId from the drop down list will adjust all the dashboard visualisations to present the metrics related to the selected DistributionId\n\nWhen monitoring a CloudFront distribution the metrics that make most sense are requests, hits (or misses) and amounts of data.\n\nThe CloudFront Dashboard is split in three panels that represent these major categories.\n\n\n### Distribution requests panel\n\nThis panel includes the total number of requests and the number of requests over time for the selected DistributionId and time range.\n\nIt can help you identify issues in your applications but checking for large fluctuations in the number of requests over time. \n\nHigh spikes or very limited usage can indicate that something may be wrong with your infastructure setup. \n\nFor example perhaps there are errors on the clients calling your application and the CloudFront distribution is underused.\n\nOr that you may need to setup a second distribution for that application since one is not enough.\n\n\n### Distribution data panel\n\nThis panel includes the total number of uploaded or downloaded data as an overview of what is happening and the amounts of data that are getting downloaded or uploaded over time for the selected DistributionId and time range.\n\nIt can help you identify issues in your applications by correlating it with the request panel. \n\nFor example if the amount of requests for a given period stays the about same and the amount of data getting transfered (up or down) changes then this may indicate an issue somewhere in your stack.\n\n\n### Distribution errors panel\n\nThis panel includes the total error rate and the error rate per error type [4xx and 5xx errors] over time for the selected DistributionId and time range.\n\nSpikes in these graphs can suggest issues.\n\nFor example spikes or sustained increases in 5xx errors (>= 10%) in 4xx errors may suggest a changed api url or a moved resource that results in bad requests. It even may suggest authorization issues.\n\nSpikes or sustained increases in 5xx errors (>= 10%) usually suggest that your servers are having troubles responding to request.\n\n\n## How to\n\nThis Dashboard was made possible by creating an EC2 instance that runs metribeat and has read permissions to various aws services that run under the same account.\n\nThese logs then get normalized and shipped to Logz.io.\n\nAfterwards, observing the raw data gives you the chance to make your elasticsearch queries to narrow down the results you want visualize.\n\nFor more info on how to setup metricbeat combined with Logz.io on your EC2 account refer to the following links.\n\n[Monitoring AWS EC2 using Metricbeat](https://www.elastic.co/blog/monitoring-aws-ec2-using-metricbeat-and-the-elastic-stack)\n\n[MetricBeat AWS module](https://www.elastic.co/guide/en/beats/metricbeat/master/metricbeat-module-aws.html)\n\nBear in mind that most of the AWS modules for MetricBeat are still in Beta.\n",
+      "datasource": null,
+      "editable": true,
+      "error": false,
+      "gridPos": {
+        "h": 26,
+        "w": 24,
+        "x": 0,
+        "y": 56
+      },
+      "id": 2,
+      "isNew": true,
+      "links": [],
+      "mode": "markdown",
+      "options": {},
+      "repeat": null,
+      "repeatDirection": "h",
+      "title": "",
+      "type": "text"
+    }
+  ],
+  "refresh": false,
+  "schemaVersion": 21,
+  "style": "dark",
+  "tags": [
+    "AWS",
+    "Metricbeat 7.5",
+    "AWS/Cloudfront",
+    "Cloudwatch"
+  ],
+  "templating": {
+    "list": [
+      {
+        "current": {
+          "text": "Alex_Metrics",
+          "value": "Alex_Metrics"
+        },
+        "hide": 2,
+        "includeAll": false,
+        "label": "Account",
+        "multi": false,
+        "name": "account",
+        "options": [],
+        "query": "elasticsearch",
+        "refresh": 1,
+        "regex": "",
+        "skipUrlSync": false,
+        "type": "datasource"
+      },
+      {
+        "allValue": null,
+        "current": {
+          "tags": [],
+          "text": "All",
+          "value": [
+            "$__all"
+          ]
+        },
+        "datasource": "$account",
+        "definition": "{\"find\": \"terms\", \"field\": \"aws.cloudwatch.dimensions.DistributionId\"}",
+        "hide": 0,
+        "includeAll": true,
+        "label": "DistributionId",
+        "multi": true,
+        "name": "distributionid",
+        "options": [],
+        "query": "{\"find\": \"terms\", \"field\": \"aws.cloudwatch.dimensions.DistributionId\"}",
+        "refresh": 1,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 0,
+        "tagValuesQuery": null,
+        "tags": [],
+        "tagsQuery": null,
+        "type": "query",
+        "useTags": false
+      }
+    ]
+  },
+  "time": {
+    "from": "now-1h",
+    "to": "now"
+  },
+  "timepicker": {
+    "refresh_intervals": [
+      "5s",
+      "10s",
+      "30s",
+      "1m",
+      "5m",
+      "15m",
+      "30m",
+      "1h",
+      "2h",
+      "1d"
+    ],
+    "time_options": [
+      "5m",
+      "15m",
+      "1h",
+      "6h",
+      "12h",
+      "24h",
+      "2d",
+      "7d",
+      "30d"
+    ]
+  },
+  "timezone": "browser",
+  "title": "AWS CloudFront",
+  "uid": "mlsEAgtWz",
+  "version": 126
+}
