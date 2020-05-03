@@ -1,0 +1,2085 @@
+{
+    "annotations": {
+      "list": [
+        {
+          "builtIn": 1,
+          "datasource": "-- Grafana --",
+          "enable": true,
+          "hide": true,
+          "iconColor": "rgba(0, 211, 255, 1)",
+          "name": "Annotations & Alerts",
+          "type": "dashboard"
+        }
+      ]
+    },
+    "editable": true,
+    "gnetId": null,
+    "graphTooltip": 1,
+    "id": 120,
+    "iteration": 1588523888075,
+    "links": [
+      {
+        "icon": "info",
+        "tags": [],
+        "targetBlank": true,
+        "title": "Metricbeat Kubernetes fields",
+        "type": "link",
+        "url": "https://www.elastic.co/guide/en/beats/metricbeat/7.1/exported-fields-kubernetes.html"
+      },
+      {
+        "icon": "external link",
+        "keepTime": true,
+        "tags": [],
+        "title": "Explore In Kibana",
+        "tooltip": "",
+        "type": "link",
+        "url": "/#/explore-kibana-from-grafana?query=kubernetes AND $hostname"
+      }
+    ],
+    "panels": [
+      {
+        "cacheTimeout": null,
+        "colorBackground": false,
+        "colorValue": true,
+        "colors": [
+          "rgba(50, 172, 45, 0.97)",
+          "#629e51",
+          "rgba(245, 54, 54, 0.9)"
+        ],
+        "datasource": "$Source",
+        "decimals": null,
+        "editable": true,
+        "error": false,
+        "format": "short",
+        "gauge": {
+          "maxValue": 100,
+          "minValue": 0,
+          "show": false,
+          "thresholdLabels": false,
+          "thresholdMarkers": true
+        },
+        "gridPos": {
+          "h": 2,
+          "w": 12,
+          "x": 0,
+          "y": 0
+        },
+        "height": "1",
+        "hideTimeOverride": true,
+        "id": 22,
+        "interval": null,
+        "links": [],
+        "mappingType": 1,
+        "mappingTypes": [
+          {
+            "name": "value to text",
+            "value": 1
+          },
+          {
+            "name": "range to text",
+            "value": 2
+          }
+        ],
+        "maxDataPoints": 100,
+        "nullPointMode": "connected",
+        "nullText": null,
+        "options": {},
+        "postfix": "",
+        "postfixFontSize": "50%",
+        "prefix": "",
+        "prefixFontSize": "50%",
+        "rangeMaps": [
+          {
+            "from": "null",
+            "text": "N/A",
+            "to": "null"
+          }
+        ],
+        "sparkline": {
+          "fillColor": "rgba(31, 118, 189, 0.18)",
+          "full": false,
+          "lineColor": "rgb(31, 120, 193)",
+          "show": false
+        },
+        "tableColumn": "",
+        "targets": [
+          {
+            "bucketAggs": [
+              {
+                "field": "@timestamp",
+                "id": "2",
+                "settings": {
+                  "interval": "auto",
+                  "min_doc_count": 1,
+                  "trimEdges": 1
+                },
+                "type": "date_histogram"
+              }
+            ],
+            "expr": "sum(kubelet_running_container_count{instance=~\"^$Node$\",job=\"kubelets\"})",
+            "format": "time_series",
+            "interval": "10s",
+            "intervalFactor": 2,
+            "legendFormat": "",
+            "metrics": [
+              {
+                "field": "kubernetes.container.id",
+                "id": "1",
+                "meta": {},
+                "settings": {
+                  "precision_threshold": 40000
+                },
+                "type": "cardinality"
+              }
+            ],
+            "query": "host.name:$hostname  kubernetes.container.name:$container AND kubernetes.container.status.phase:running AND cluster:$cluster",
+            "refId": "A",
+            "step": 30,
+            "timeField": "@timestamp"
+          }
+        ],
+        "thresholds": "",
+        "timeFrom": "1h",
+        "title": "Running containers",
+        "type": "singlestat",
+        "valueFontSize": "80%",
+        "valueMaps": [
+          {
+            "op": "=",
+            "text": "0",
+            "value": "null"
+          }
+        ],
+        "valueName": "current"
+      },
+      {
+        "cacheTimeout": null,
+        "colorBackground": false,
+        "colorValue": true,
+        "colors": [
+          "rgba(50, 172, 45, 0.97)",
+          "rgba(237, 129, 40, 0.89)",
+          "rgba(245, 54, 54, 0.9)"
+        ],
+        "datasource": "$Source",
+        "editable": true,
+        "error": false,
+        "format": "none",
+        "gauge": {
+          "maxValue": 100,
+          "minValue": 0,
+          "show": false,
+          "thresholdLabels": false,
+          "thresholdMarkers": true
+        },
+        "gridPos": {
+          "h": 2,
+          "w": 8,
+          "x": 12,
+          "y": 0
+        },
+        "height": "1",
+        "hideTimeOverride": true,
+        "id": 36,
+        "interval": null,
+        "links": [],
+        "mappingType": 1,
+        "mappingTypes": [
+          {
+            "name": "value to text",
+            "value": 1
+          },
+          {
+            "name": "range to text",
+            "value": 2
+          }
+        ],
+        "maxDataPoints": 100,
+        "nullPointMode": "connected",
+        "nullText": null,
+        "options": {},
+        "postfix": "",
+        "postfixFontSize": "50%",
+        "prefix": "",
+        "prefixFontSize": "50%",
+        "rangeMaps": [
+          {
+            "from": "null",
+            "text": "N/A",
+            "to": "null"
+          }
+        ],
+        "sparkline": {
+          "fillColor": "rgba(31, 118, 189, 0.18)",
+          "full": false,
+          "lineColor": "rgb(31, 120, 193)",
+          "show": false
+        },
+        "tableColumn": "",
+        "targets": [
+          {
+            "bucketAggs": [
+              {
+                "field": "@timestamp",
+                "id": "2",
+                "settings": {
+                  "interval": "auto",
+                  "min_doc_count": 1,
+                  "trimEdges": 1
+                },
+                "type": "date_histogram"
+              }
+            ],
+            "expr": "sum(kubelet_running_container_count{instance=~\"^$Node$\",job=\"kubelets\"})",
+            "format": "time_series",
+            "interval": "10s",
+            "intervalFactor": 2,
+            "legendFormat": "",
+            "metrics": [
+              {
+                "field": "kubernetes.container.id",
+                "id": "1",
+                "meta": {},
+                "settings": {
+                  "precision_threshold": 40000
+                },
+                "type": "cardinality"
+              }
+            ],
+            "query": "host.name:$hostname  AND kubernetes.container.name:$container AND kubernetes.container.status.phase:waiting AND cluster:$cluster",
+            "refId": "A",
+            "step": 30,
+            "timeField": "@timestamp"
+          }
+        ],
+        "thresholds": "",
+        "timeFrom": "1h",
+        "title": "Waiting containers",
+        "type": "singlestat",
+        "valueFontSize": "80%",
+        "valueMaps": [
+          {
+            "op": "=",
+            "text": "0",
+            "value": "null"
+          }
+        ],
+        "valueName": "current"
+      },
+      {
+        "cacheTimeout": null,
+        "colorBackground": false,
+        "colorValue": true,
+        "colors": [
+          "rgba(50, 172, 45, 0.97)",
+          "#e24d42",
+          "rgba(245, 54, 54, 0.9)"
+        ],
+        "datasource": "$Source",
+        "editable": true,
+        "error": false,
+        "format": "none",
+        "gauge": {
+          "maxValue": 100,
+          "minValue": 0,
+          "show": false,
+          "thresholdLabels": false,
+          "thresholdMarkers": true
+        },
+        "gridPos": {
+          "h": 2,
+          "w": 4,
+          "x": 20,
+          "y": 0
+        },
+        "height": "1",
+        "hideTimeOverride": true,
+        "id": 37,
+        "interval": null,
+        "links": [],
+        "mappingType": 1,
+        "mappingTypes": [
+          {
+            "name": "value to text",
+            "value": 1
+          },
+          {
+            "name": "range to text",
+            "value": 2
+          }
+        ],
+        "maxDataPoints": 100,
+        "nullPointMode": "connected",
+        "nullText": null,
+        "options": {},
+        "postfix": "",
+        "postfixFontSize": "50%",
+        "prefix": "",
+        "prefixFontSize": "50%",
+        "rangeMaps": [
+          {
+            "from": "null",
+            "text": "N/A",
+            "to": "null"
+          }
+        ],
+        "sparkline": {
+          "fillColor": "rgba(31, 118, 189, 0.18)",
+          "full": false,
+          "lineColor": "rgb(31, 120, 193)",
+          "show": false
+        },
+        "tableColumn": "",
+        "targets": [
+          {
+            "bucketAggs": [
+              {
+                "field": "@timestamp",
+                "id": "2",
+                "settings": {
+                  "interval": "auto",
+                  "min_doc_count": 1,
+                  "trimEdges": 1
+                },
+                "type": "date_histogram"
+              }
+            ],
+            "expr": "sum(kubelet_running_container_count{instance=~\"^$Node$\",job=\"kubelets\"})",
+            "format": "time_series",
+            "interval": "10s",
+            "intervalFactor": 2,
+            "legendFormat": "",
+            "metrics": [
+              {
+                "field": "kubernetes.container.id",
+                "id": "1",
+                "meta": {},
+                "settings": {
+                  "precision_threshold": 40000
+                },
+                "type": "cardinality"
+              }
+            ],
+            "query": "host.name:$hostname  AND kubernetes.container.name:$container AND kubernetes.container.status.phase:terminated AND cluster:$cluster",
+            "refId": "A",
+            "step": 30,
+            "timeField": "@timestamp"
+          }
+        ],
+        "thresholds": "",
+        "timeFrom": "1h",
+        "title": "Terminated containers",
+        "type": "singlestat",
+        "valueFontSize": "80%",
+        "valueMaps": [
+          {
+            "op": "=",
+            "text": "0",
+            "value": "null"
+          }
+        ],
+        "valueName": "current"
+      },
+      {
+        "aliasColors": {},
+        "bars": false,
+        "dashLength": 10,
+        "dashes": false,
+        "datasource": "$Source",
+        "fill": 1,
+        "fillGradient": 0,
+        "gridPos": {
+          "h": 9,
+          "w": 12,
+          "x": 0,
+          "y": 2
+        },
+        "hiddenSeries": false,
+        "id": 29,
+        "interval": "10s",
+        "legend": {
+          "alignAsTable": true,
+          "avg": true,
+          "current": false,
+          "max": true,
+          "min": false,
+          "rightSide": false,
+          "show": true,
+          "total": false,
+          "values": true
+        },
+        "lines": true,
+        "linewidth": 1,
+        "links": [],
+        "nullPointMode": "null",
+        "options": {
+          "dataLinks": []
+        },
+        "percentage": false,
+        "pointradius": 5,
+        "points": false,
+        "renderer": "flot",
+        "seriesOverrides": [],
+        "spaceLength": 10,
+        "stack": false,
+        "steppedLine": false,
+        "targets": [
+          {
+            "alias": "Running",
+            "bucketAggs": [
+              {
+                "field": "@timestamp",
+                "id": "2",
+                "settings": {
+                  "interval": "auto",
+                  "min_doc_count": 1,
+                  "trimEdges": 1
+                },
+                "type": "date_histogram"
+              }
+            ],
+            "metrics": [
+              {
+                "field": "kubernetes.container.id",
+                "id": "1",
+                "meta": {},
+                "settings": {
+                  "precision_threshold": 40000
+                },
+                "type": "cardinality"
+              }
+            ],
+            "query": "kubernetes.container.status.phase:running  AND kubernetes.container.name:$container AND cluster:$cluster AND host.name:$hostname",
+            "refId": "B",
+            "timeField": "@timestamp"
+          }
+        ],
+        "thresholds": [],
+        "timeFrom": null,
+        "timeRegions": [],
+        "timeShift": null,
+        "title": "Running Containers",
+        "tooltip": {
+          "shared": true,
+          "sort": 0,
+          "value_type": "individual"
+        },
+        "type": "graph",
+        "xaxis": {
+          "buckets": null,
+          "mode": "time",
+          "name": null,
+          "show": true,
+          "values": []
+        },
+        "yaxes": [
+          {
+            "decimals": -1,
+            "format": "short",
+            "label": "",
+            "logBase": 1,
+            "max": null,
+            "min": null,
+            "show": true
+          },
+          {
+            "format": "short",
+            "label": null,
+            "logBase": 1,
+            "max": null,
+            "min": null,
+            "show": true
+          }
+        ],
+        "yaxis": {
+          "align": false,
+          "alignLevel": null
+        }
+      },
+      {
+        "aliasColors": {},
+        "bars": false,
+        "dashLength": 10,
+        "dashes": false,
+        "datasource": "$Source",
+        "fill": 1,
+        "fillGradient": 0,
+        "gridPos": {
+          "h": 9,
+          "w": 12,
+          "x": 12,
+          "y": 2
+        },
+        "hiddenSeries": false,
+        "id": 30,
+        "interval": "10s",
+        "legend": {
+          "alignAsTable": true,
+          "avg": true,
+          "current": false,
+          "max": true,
+          "min": false,
+          "rightSide": false,
+          "show": true,
+          "total": false,
+          "values": true
+        },
+        "lines": true,
+        "linewidth": 1,
+        "links": [],
+        "nullPointMode": "null",
+        "options": {
+          "dataLinks": []
+        },
+        "percentage": false,
+        "pointradius": 5,
+        "points": false,
+        "renderer": "flot",
+        "seriesOverrides": [],
+        "spaceLength": 10,
+        "stack": false,
+        "steppedLine": false,
+        "targets": [
+          {
+            "alias": "Waiting",
+            "bucketAggs": [
+              {
+                "field": "@timestamp",
+                "id": "2",
+                "settings": {
+                  "interval": "auto",
+                  "min_doc_count": 0,
+                  "trimEdges": 0
+                },
+                "type": "date_histogram"
+              }
+            ],
+            "metrics": [
+              {
+                "field": "kubernetes.container.id",
+                "id": "1",
+                "meta": {},
+                "settings": {
+                  "precision_threshold": 40000
+                },
+                "type": "cardinality"
+              }
+            ],
+            "query": "kubernetes.container.status.phase:waiting  AND host.name:$hostname AND kubernetes.container.name:$container AND cluster:$cluster",
+            "refId": "B",
+            "timeField": "@timestamp"
+          },
+          {
+            "alias": "Terminated",
+            "bucketAggs": [
+              {
+                "field": "@timestamp",
+                "id": "2",
+                "settings": {
+                  "interval": "auto",
+                  "min_doc_count": 0,
+                  "trimEdges": 0
+                },
+                "type": "date_histogram"
+              }
+            ],
+            "metrics": [
+              {
+                "field": "kubernetes.container.id",
+                "id": "1",
+                "meta": {},
+                "settings": {
+                  "precision_threshold": 40000
+                },
+                "type": "cardinality"
+              }
+            ],
+            "query": "kubernetes.container.status.phase:terminated  AND host.name:$hostname AND kubernetes.container.name:$container AND cluster:$cluster",
+            "refId": "C",
+            "timeField": "@timestamp"
+          }
+        ],
+        "thresholds": [],
+        "timeFrom": null,
+        "timeRegions": [],
+        "timeShift": null,
+        "title": "Non-Running Containers",
+        "tooltip": {
+          "shared": true,
+          "sort": 0,
+          "value_type": "individual"
+        },
+        "type": "graph",
+        "xaxis": {
+          "buckets": null,
+          "mode": "time",
+          "name": null,
+          "show": true,
+          "values": []
+        },
+        "yaxes": [
+          {
+            "decimals": -1,
+            "format": "short",
+            "label": null,
+            "logBase": 1,
+            "max": null,
+            "min": null,
+            "show": true
+          },
+          {
+            "format": "short",
+            "label": null,
+            "logBase": 1,
+            "max": null,
+            "min": null,
+            "show": true
+          }
+        ],
+        "yaxis": {
+          "align": false,
+          "alignLevel": null
+        }
+      },
+      {
+        "cacheTimeout": null,
+        "colorBackground": false,
+        "colorValue": true,
+        "colors": [
+          "rgba(50, 172, 45, 0.97)",
+          "#508642",
+          "rgba(245, 54, 54, 0.9)"
+        ],
+        "datasource": "$Source",
+        "decimals": null,
+        "editable": true,
+        "error": false,
+        "format": "short",
+        "gauge": {
+          "maxValue": 100,
+          "minValue": 0,
+          "show": false,
+          "thresholdLabels": false,
+          "thresholdMarkers": true
+        },
+        "gridPos": {
+          "h": 4,
+          "w": 6,
+          "x": 0,
+          "y": 11
+        },
+        "height": "1",
+        "hideTimeOverride": true,
+        "id": 21,
+        "interval": "10s",
+        "links": [],
+        "mappingType": 1,
+        "mappingTypes": [
+          {
+            "name": "value to text",
+            "value": 1
+          },
+          {
+            "name": "range to text",
+            "value": 2
+          }
+        ],
+        "maxDataPoints": 100,
+        "nullPointMode": "connected",
+        "nullText": null,
+        "options": {},
+        "postfix": "",
+        "postfixFontSize": "50%",
+        "prefix": "",
+        "prefixFontSize": "50%",
+        "rangeMaps": [
+          {
+            "from": "null",
+            "text": "N/A",
+            "to": "null"
+          }
+        ],
+        "sparkline": {
+          "fillColor": "rgba(31, 118, 189, 0.18)",
+          "full": false,
+          "lineColor": "rgb(31, 120, 193)",
+          "show": false
+        },
+        "tableColumn": "",
+        "targets": [
+          {
+            "bucketAggs": [
+              {
+                "field": "@timestamp",
+                "id": "2",
+                "settings": {
+                  "interval": "auto",
+                  "min_doc_count": 1,
+                  "trimEdges": 1
+                },
+                "type": "date_histogram"
+              }
+            ],
+            "expr": "sum(kubelet_running_pod_count{instance=~\"^$Node$\",job=\"kubelets\"})",
+            "format": "time_series",
+            "interval": "10s",
+            "intervalFactor": 2,
+            "legendFormat": "",
+            "metrics": [
+              {
+                "field": "kubernetes.pod.name",
+                "id": "1",
+                "meta": {},
+                "settings": {
+                  "precision_threshold": 40000
+                },
+                "type": "cardinality"
+              }
+            ],
+            "query": "kubernetes.pod.name:$container*  AND host.name:$hostname AND kubernetes.pod.status.phase:running AND cluster:$cluster",
+            "refId": "A",
+            "step": 30,
+            "timeField": "@timestamp"
+          }
+        ],
+        "thresholds": "",
+        "timeFrom": "1h",
+        "timeShift": null,
+        "title": "Running pods",
+        "type": "singlestat",
+        "valueFontSize": "80%",
+        "valueMaps": [
+          {
+            "op": "=",
+            "text": "0",
+            "value": "null"
+          }
+        ],
+        "valueName": "current"
+      },
+      {
+        "cacheTimeout": null,
+        "colorBackground": false,
+        "colorValue": true,
+        "colors": [
+          "rgba(50, 172, 45, 0.97)",
+          "rgba(255, 92, 53, 0.89)",
+          "rgba(255, 65, 19, 0.9)"
+        ],
+        "datasource": "$Source",
+        "decimals": 2,
+        "editable": true,
+        "error": false,
+        "format": "decbytes",
+        "gauge": {
+          "maxValue": 100,
+          "minValue": 0,
+          "show": false,
+          "thresholdLabels": false,
+          "thresholdMarkers": true
+        },
+        "gridPos": {
+          "h": 4,
+          "w": 6,
+          "x": 6,
+          "y": 11
+        },
+        "height": "1px",
+        "hideTimeOverride": true,
+        "id": 9,
+        "interval": "10s",
+        "links": [],
+        "mappingType": 1,
+        "mappingTypes": [
+          {
+            "name": "value to text",
+            "value": 1
+          },
+          {
+            "name": "range to text",
+            "value": 2
+          }
+        ],
+        "maxDataPoints": 100,
+        "nullPointMode": "connected",
+        "nullText": null,
+        "options": {},
+        "postfix": "",
+        "postfixFontSize": "20%",
+        "prefix": "",
+        "prefixFontSize": "20%",
+        "rangeMaps": [
+          {
+            "from": "null",
+            "text": "N/A",
+            "to": "null"
+          }
+        ],
+        "sparkline": {
+          "fillColor": "rgba(31, 118, 189, 0.18)",
+          "full": true,
+          "lineColor": "rgb(31, 120, 193)",
+          "show": false
+        },
+        "tableColumn": "",
+        "targets": [
+          {
+            "bucketAggs": [
+              {
+                "field": "@timestamp",
+                "id": "2",
+                "settings": {
+                  "interval": "10s",
+                  "min_doc_count": 1,
+                  "trimEdges": 3
+                },
+                "type": "date_histogram"
+              }
+            ],
+            "expr": "sum (container_memory_working_set_bytes{id=\"/\",instance=~\"^$Node$\"})",
+            "format": "time_series",
+            "interval": "10s",
+            "intervalFactor": 1,
+            "metrics": [
+              {
+                "field": "kubernetes.container.memory.workingset.bytes$SUM",
+                "id": "1",
+                "meta": {},
+                "settings": {},
+                "type": "sum"
+              }
+            ],
+            "query": "host.name:$hostname  AND kubernetes.container.name:$container AND cluster:$cluster",
+            "refId": "A",
+            "step": 30,
+            "timeField": "@timestamp"
+          }
+        ],
+        "thresholds": "",
+        "timeFrom": null,
+        "title": "Used Memory",
+        "type": "singlestat",
+        "valueFontSize": "50%",
+        "valueMaps": [
+          {
+            "op": "=",
+            "text": "N/A",
+            "value": "null"
+          }
+        ],
+        "valueName": "current"
+      },
+      {
+        "cacheTimeout": null,
+        "colorBackground": false,
+        "colorValue": true,
+        "colors": [
+          "rgba(255, 65, 19, 0.9)",
+          "rgba(255, 92, 53, 0.89)",
+          "rgba(50, 172, 45, 0.97)"
+        ],
+        "datasource": "$Source",
+        "decimals": 2,
+        "editable": true,
+        "error": false,
+        "format": "decbytes",
+        "gauge": {
+          "maxValue": 100,
+          "minValue": 0,
+          "show": false,
+          "thresholdLabels": false,
+          "thresholdMarkers": true
+        },
+        "gridPos": {
+          "h": 2,
+          "w": 12,
+          "x": 12,
+          "y": 11
+        },
+        "height": "1px",
+        "id": 19,
+        "interval": null,
+        "links": [],
+        "mappingType": 1,
+        "mappingTypes": [
+          {
+            "name": "value to text",
+            "value": 1
+          },
+          {
+            "name": "range to text",
+            "value": 2
+          }
+        ],
+        "maxDataPoints": 100,
+        "nullPointMode": "connected",
+        "nullText": null,
+        "options": {},
+        "postfix": "",
+        "postfixFontSize": "30%",
+        "prefix": "",
+        "prefixFontSize": "20%",
+        "rangeMaps": [
+          {
+            "from": "null",
+            "text": "N/A",
+            "to": "null"
+          }
+        ],
+        "sparkline": {
+          "fillColor": "rgba(31, 118, 189, 0.18)",
+          "full": false,
+          "lineColor": "rgb(31, 120, 193)",
+          "show": false
+        },
+        "tableColumn": "",
+        "targets": [
+          {
+            "bucketAggs": [
+              {
+                "field": "@timestamp",
+                "id": "2",
+                "settings": {
+                  "interval": "10s",
+                  "min_doc_count": 1,
+                  "trimEdges": 3
+                },
+                "type": "date_histogram"
+              }
+            ],
+            "expr": "sum (container_fs_usage_bytes{device=\"/dev/xvda9\",id=\"/\",instance=~\"^$Node$\"})",
+            "format": "time_series",
+            "interval": "10s",
+            "intervalFactor": 1,
+            "legendFormat": "",
+            "metrics": [
+              {
+                "field": "kubernetes.container.rootfs.used.bytes",
+                "id": "1",
+                "meta": {},
+                "settings": {},
+                "type": "sum"
+              }
+            ],
+            "query": "host.name:$hostname  AND kubernetes.container.name:$container AND cluster:$cluster",
+            "refId": "A",
+            "step": 30,
+            "timeField": "@timestamp"
+          }
+        ],
+        "thresholds": "",
+        "timeFrom": null,
+        "timeShift": null,
+        "title": "Filesystem used space",
+        "type": "singlestat",
+        "valueFontSize": "50%",
+        "valueMaps": [
+          {
+            "op": "=",
+            "text": "N/A",
+            "value": "null"
+          }
+        ],
+        "valueName": "current"
+      },
+      {
+        "aliasColors": {},
+        "bars": true,
+        "cacheTimeout": null,
+        "dashLength": 10,
+        "dashes": false,
+        "datasource": "$Source",
+        "description": "When choosing multiple hosts this metric will show the average FS space",
+        "fill": 1,
+        "fillGradient": 0,
+        "gridPos": {
+          "h": 6,
+          "w": 12,
+          "x": 12,
+          "y": 13
+        },
+        "hiddenSeries": false,
+        "id": 25,
+        "legend": {
+          "avg": false,
+          "current": false,
+          "max": false,
+          "min": false,
+          "show": true,
+          "total": false,
+          "values": false
+        },
+        "lines": false,
+        "linewidth": 1,
+        "links": [],
+        "nullPointMode": "connected",
+        "options": {
+          "dataLinks": []
+        },
+        "percentage": false,
+        "pointradius": 2,
+        "points": false,
+        "renderer": "flot",
+        "seriesOverrides": [],
+        "spaceLength": 10,
+        "stack": true,
+        "steppedLine": false,
+        "targets": [
+          {
+            "bucketAggs": [
+              {
+                "fake": true,
+                "field": "kubernetes.node.name",
+                "id": "3",
+                "settings": {
+                  "min_doc_count": 1,
+                  "order": "desc",
+                  "orderBy": "_term",
+                  "size": "10"
+                },
+                "type": "terms"
+              },
+              {
+                "field": "@timestamp",
+                "id": "2",
+                "settings": {
+                  "interval": "10s",
+                  "min_doc_count": 1,
+                  "trimEdges": 3
+                },
+                "type": "date_histogram"
+              }
+            ],
+            "expr": "sum (container_fs_usage_bytes{device=\"/dev/xvda9\",id=\"/\",instance=~\"^$Node$\"})",
+            "format": "time_series",
+            "interval": "10s",
+            "intervalFactor": 1,
+            "legendFormat": "",
+            "metrics": [
+              {
+                "field": "kubernetes.container.rootfs.capacity.bytes",
+                "id": "1",
+                "meta": {},
+                "settings": {},
+                "type": "avg"
+              }
+            ],
+            "query": "host.name:$hostname  AND kubernetes.container.name:$container AND cluster:$cluster",
+            "refId": "A",
+            "step": 30,
+            "timeField": "@timestamp"
+          }
+        ],
+        "thresholds": [],
+        "timeFrom": null,
+        "timeRegions": [],
+        "timeShift": null,
+        "title": "Filesystem total space",
+        "tooltip": {
+          "shared": true,
+          "sort": 0,
+          "value_type": "individual"
+        },
+        "type": "graph",
+        "xaxis": {
+          "buckets": null,
+          "mode": "time",
+          "name": null,
+          "show": true,
+          "values": []
+        },
+        "yaxes": [
+          {
+            "format": "bytes",
+            "label": null,
+            "logBase": 1,
+            "max": null,
+            "min": null,
+            "show": true
+          },
+          {
+            "format": "short",
+            "label": null,
+            "logBase": 1,
+            "max": null,
+            "min": null,
+            "show": true
+          }
+        ],
+        "yaxis": {
+          "align": false,
+          "alignLevel": null
+        }
+      },
+      {
+        "cacheTimeout": null,
+        "colorBackground": false,
+        "colorValue": true,
+        "colors": [
+          "rgba(50, 172, 45, 0.97)",
+          "#ef843c",
+          "rgba(245, 54, 54, 0.9)"
+        ],
+        "datasource": "$Source",
+        "decimals": null,
+        "editable": true,
+        "error": false,
+        "format": "short",
+        "gauge": {
+          "maxValue": 100,
+          "minValue": 0,
+          "show": false,
+          "thresholdLabels": false,
+          "thresholdMarkers": true
+        },
+        "gridPos": {
+          "h": 4,
+          "w": 6,
+          "x": 0,
+          "y": 15
+        },
+        "height": "1",
+        "hideTimeOverride": true,
+        "id": 38,
+        "interval": "10s",
+        "links": [],
+        "mappingType": 1,
+        "mappingTypes": [
+          {
+            "name": "value to text",
+            "value": 1
+          },
+          {
+            "name": "range to text",
+            "value": 2
+          }
+        ],
+        "maxDataPoints": 100,
+        "nullPointMode": "connected",
+        "nullText": null,
+        "options": {},
+        "postfix": "",
+        "postfixFontSize": "50%",
+        "prefix": "",
+        "prefixFontSize": "50%",
+        "rangeMaps": [
+          {
+            "from": "null",
+            "text": "N/A",
+            "to": "null"
+          }
+        ],
+        "sparkline": {
+          "fillColor": "rgba(31, 118, 189, 0.18)",
+          "full": false,
+          "lineColor": "rgb(31, 120, 193)",
+          "show": false
+        },
+        "tableColumn": "",
+        "targets": [
+          {
+            "bucketAggs": [
+              {
+                "field": "@timestamp",
+                "id": "2",
+                "settings": {
+                  "interval": "auto",
+                  "min_doc_count": 1,
+                  "trimEdges": 1
+                },
+                "type": "date_histogram"
+              }
+            ],
+            "expr": "sum(kubelet_running_pod_count{instance=~\"^$Node$\",job=\"kubelets\"})",
+            "format": "time_series",
+            "interval": "10s",
+            "intervalFactor": 2,
+            "legendFormat": "",
+            "metrics": [
+              {
+                "field": "kubernetes.pod.name",
+                "id": "1",
+                "meta": {},
+                "settings": {
+                  "precision_threshold": 40000
+                },
+                "type": "cardinality"
+              }
+            ],
+            "query": "kubernetes.pod.name:$container*  AND host.name:$hostname AND kubernetes.pod.status.phase:pending AND cluster:$cluster",
+            "refId": "A",
+            "step": 30,
+            "timeField": "@timestamp"
+          }
+        ],
+        "thresholds": "",
+        "timeFrom": "1h",
+        "timeShift": null,
+        "title": "Waiting pods",
+        "type": "singlestat",
+        "valueFontSize": "80%",
+        "valueMaps": [
+          {
+            "op": "=",
+            "text": "0",
+            "value": "null"
+          }
+        ],
+        "valueName": "current"
+      },
+      {
+        "cacheTimeout": null,
+        "colorBackground": false,
+        "colorValue": true,
+        "colors": [
+          "rgba(50, 172, 45, 0.97)",
+          "#1f78c1",
+          "#1f78c1"
+        ],
+        "datasource": "$Source",
+        "decimals": 2,
+        "editable": true,
+        "error": false,
+        "format": "decbytes",
+        "gauge": {
+          "maxValue": 100,
+          "minValue": 0,
+          "show": false,
+          "thresholdLabels": false,
+          "thresholdMarkers": true
+        },
+        "gridPos": {
+          "h": 4,
+          "w": 6,
+          "x": 6,
+          "y": 15
+        },
+        "height": "1px",
+        "hideTimeOverride": true,
+        "id": 26,
+        "interval": null,
+        "links": [],
+        "mappingType": 1,
+        "mappingTypes": [
+          {
+            "name": "value to text",
+            "value": 1
+          },
+          {
+            "name": "range to text",
+            "value": 2
+          }
+        ],
+        "maxDataPoints": 100,
+        "nullPointMode": "connected",
+        "nullText": null,
+        "options": {},
+        "postfix": "",
+        "postfixFontSize": "20%",
+        "prefix": "",
+        "prefixFontSize": "20%",
+        "rangeMaps": [
+          {
+            "from": "null",
+            "text": "N/A",
+            "to": "null"
+          }
+        ],
+        "sparkline": {
+          "fillColor": "rgba(31, 118, 189, 0.18)",
+          "full": true,
+          "lineColor": "rgb(31, 120, 193)",
+          "show": false
+        },
+        "tableColumn": "",
+        "targets": [
+          {
+            "bucketAggs": [
+              {
+                "field": "@timestamp",
+                "id": "2",
+                "settings": {
+                  "interval": "10s",
+                  "min_doc_count": 1,
+                  "trimEdges": 3
+                },
+                "type": "date_histogram"
+              }
+            ],
+            "expr": "sum (container_memory_working_set_bytes{id=\"/\",instance=~\"^$Node$\"})",
+            "format": "time_series",
+            "interval": "10s",
+            "intervalFactor": 1,
+            "metrics": [
+              {
+                "field": "kubernetes.container.memory.available.bytes",
+                "id": "1",
+                "meta": {},
+                "settings": {},
+                "type": "sum"
+              }
+            ],
+            "query": "host.name:$hostname  AND kubernetes.container.name:$container AND cluster:$cluster",
+            "refId": "A",
+            "step": 30,
+            "timeField": "@timestamp"
+          }
+        ],
+        "thresholds": "",
+        "timeFrom": null,
+        "title": "Available Memory",
+        "type": "singlestat",
+        "valueFontSize": "50%",
+        "valueMaps": [
+          {
+            "op": "=",
+            "text": "N/A",
+            "value": "null"
+          }
+        ],
+        "valueName": "current"
+      },
+      {
+        "aliasColors": {},
+        "bars": false,
+        "dashLength": 10,
+        "dashes": false,
+        "datasource": "$Source",
+        "decimals": 2,
+        "editable": true,
+        "error": false,
+        "fill": 2,
+        "fillGradient": 0,
+        "grid": {
+          "leftLogBase": 1,
+          "leftMax": null,
+          "leftMin": null,
+          "rightLogBase": 1,
+          "rightMax": null,
+          "rightMin": null
+        },
+        "gridPos": {
+          "h": 7,
+          "w": 24,
+          "x": 0,
+          "y": 19
+        },
+        "hiddenSeries": false,
+        "id": 23,
+        "interval": "30s",
+        "legend": {
+          "alignAsTable": true,
+          "avg": true,
+          "current": true,
+          "max": true,
+          "min": false,
+          "rightSide": true,
+          "show": true,
+          "sort": "current",
+          "sortDesc": true,
+          "total": false,
+          "values": true
+        },
+        "lines": true,
+        "linewidth": 1,
+        "links": [],
+        "nullPointMode": "connected",
+        "options": {
+          "dataLinks": []
+        },
+        "percentage": false,
+        "pointradius": 5,
+        "points": false,
+        "renderer": "flot",
+        "seriesOverrides": [],
+        "spaceLength": 10,
+        "stack": true,
+        "steppedLine": false,
+        "targets": [
+          {
+            "bucketAggs": [
+              {
+                "fake": true,
+                "field": "kubernetes.pod.name",
+                "id": "3",
+                "settings": {
+                  "min_doc_count": 1,
+                  "order": "desc",
+                  "orderBy": "1",
+                  "size": "20"
+                },
+                "type": "terms"
+              },
+              {
+                "field": "@timestamp",
+                "id": "2",
+                "settings": {
+                  "interval": "10s",
+                  "min_doc_count": 1,
+                  "trimEdges": 0
+                },
+                "type": "date_histogram"
+              }
+            ],
+            "expr": "sum (rate (container_cpu_usage_seconds_total{image!=\"\",instance=~\"^$Node$\"}[1m])) by (pod_name)",
+            "format": "time_series",
+            "interval": "10s",
+            "intervalFactor": 1,
+            "legendFormat": "{{ pod_name }}",
+            "metric": "",
+            "metrics": [
+              {
+                "field": "kubernetes.container.cpu.usage.core.ns",
+                "hide": true,
+                "id": "1",
+                "inlineScript": "_value/1000000000",
+                "meta": {},
+                "settings": {
+                  "script": {
+                    "inline": "_value/1000000000"
+                  }
+                },
+                "type": "max"
+              },
+              {
+                "field": "1",
+                "id": "4",
+                "meta": {},
+                "pipelineAgg": "1",
+                "settings": {
+                  "unit": "1s"
+                },
+                "type": "derivative"
+              }
+            ],
+            "query": "host.name:$hostname  AND kubernetes.container.name:$container AND cluster:$cluster",
+            "refId": "A",
+            "step": 10,
+            "timeField": "@timestamp"
+          }
+        ],
+        "thresholds": [],
+        "timeFrom": null,
+        "timeRegions": [],
+        "timeShift": null,
+        "title": "Pod CPU usage",
+        "tooltip": {
+          "msResolution": true,
+          "shared": true,
+          "sort": 0,
+          "value_type": "individual"
+        },
+        "type": "graph",
+        "x-axis": true,
+        "xaxis": {
+          "buckets": null,
+          "mode": "time",
+          "name": null,
+          "show": true,
+          "values": []
+        },
+        "y-axis": true,
+        "y_formats": [
+          "short",
+          "short"
+        ],
+        "yaxes": [
+          {
+            "format": "percentunit",
+            "label": "",
+            "logBase": 1,
+            "max": null,
+            "min": null,
+            "show": true
+          },
+          {
+            "format": "ns",
+            "label": null,
+            "logBase": 1,
+            "max": null,
+            "min": null,
+            "show": true
+          }
+        ],
+        "yaxis": {
+          "align": false,
+          "alignLevel": null
+        }
+      },
+      {
+        "aliasColors": {},
+        "bars": false,
+        "dashLength": 10,
+        "dashes": false,
+        "datasource": "$Source",
+        "decimals": 2,
+        "editable": true,
+        "error": false,
+        "fill": 1,
+        "fillGradient": 0,
+        "grid": {
+          "leftLogBase": 1,
+          "leftMax": null,
+          "leftMin": null,
+          "rightLogBase": 1,
+          "rightMax": null,
+          "rightMin": null
+        },
+        "gridPos": {
+          "h": 6,
+          "w": 24,
+          "x": 0,
+          "y": 26
+        },
+        "hiddenSeries": false,
+        "id": 2,
+        "interval": "10s",
+        "legend": {
+          "alignAsTable": true,
+          "avg": true,
+          "current": true,
+          "max": false,
+          "min": false,
+          "rightSide": true,
+          "show": true,
+          "sideWidth": 200,
+          "sort": "current",
+          "sortDesc": true,
+          "total": false,
+          "values": true
+        },
+        "lines": true,
+        "linewidth": 1,
+        "links": [],
+        "nullPointMode": "connected",
+        "options": {
+          "dataLinks": []
+        },
+        "percentage": false,
+        "pointradius": 5,
+        "points": false,
+        "renderer": "flot",
+        "seriesOverrides": [],
+        "spaceLength": 10,
+        "stack": true,
+        "steppedLine": false,
+        "targets": [
+          {
+            "bucketAggs": [
+              {
+                "fake": true,
+                "field": "kubernetes.pod.name",
+                "id": "3",
+                "settings": {
+                  "min_doc_count": 1,
+                  "order": "desc",
+                  "orderBy": "1",
+                  "size": "30"
+                },
+                "type": "terms"
+              },
+              {
+                "field": "@timestamp",
+                "id": "2",
+                "settings": {
+                  "interval": "10s",
+                  "min_doc_count": 1,
+                  "trimEdges": 0
+                },
+                "type": "date_histogram"
+              }
+            ],
+            "expr": "sum (container_memory_working_set_bytes{image!=\"\",name=~\"^k8s_.*\",instance=~\"^$Node$\"}) by (pod_name)",
+            "format": "time_series",
+            "interval": "10s",
+            "intervalFactor": 1,
+            "legendFormat": "{{ pod_name }}",
+            "metric": "container_memory_usage:sort_desc",
+            "metrics": [
+              {
+                "field": "kubernetes.container.memory.workingset.bytes$MAX",
+                "id": "1",
+                "meta": {},
+                "settings": {},
+                "type": "max"
+              }
+            ],
+            "query": "host.name:$hostname  AND kubernetes.container.name:$container AND cluster:$cluster",
+            "refId": "A",
+            "step": 10,
+            "timeField": "@timestamp"
+          }
+        ],
+        "thresholds": [],
+        "timeFrom": null,
+        "timeRegions": [],
+        "timeShift": null,
+        "title": "Pod Memory usage",
+        "tooltip": {
+          "msResolution": false,
+          "shared": true,
+          "sort": 0,
+          "value_type": "individual"
+        },
+        "type": "graph",
+        "x-axis": true,
+        "xaxis": {
+          "buckets": null,
+          "mode": "time",
+          "name": null,
+          "show": true,
+          "values": []
+        },
+        "y-axis": true,
+        "y_formats": [
+          "bytes",
+          "bytes"
+        ],
+        "yaxes": [
+          {
+            "format": "bytes",
+            "label": null,
+            "logBase": 1,
+            "max": null,
+            "min": null,
+            "show": true
+          },
+          {
+            "format": "short",
+            "label": null,
+            "logBase": 1,
+            "max": null,
+            "min": null,
+            "show": true
+          }
+        ],
+        "yaxis": {
+          "align": false,
+          "alignLevel": null
+        }
+      },
+      {
+        "aliasColors": {},
+        "bars": true,
+        "dashLength": 10,
+        "dashes": false,
+        "datasource": "$Source",
+        "decimals": 2,
+        "description": "Negative values means outgoing traffic",
+        "editable": true,
+        "error": false,
+        "fill": 2,
+        "fillGradient": 0,
+        "grid": {
+          "leftLogBase": 1,
+          "leftMax": null,
+          "leftMin": null,
+          "rightLogBase": 1,
+          "rightMax": null,
+          "rightMin": null
+        },
+        "gridPos": {
+          "h": 7,
+          "w": 24,
+          "x": 0,
+          "y": 32
+        },
+        "hiddenSeries": false,
+        "id": 8,
+        "interval": "10s",
+        "legend": {
+          "alignAsTable": true,
+          "avg": true,
+          "current": true,
+          "hideEmpty": false,
+          "hideZero": false,
+          "max": false,
+          "min": false,
+          "rightSide": true,
+          "show": true,
+          "sideWidth": 200,
+          "sort": "current",
+          "sortDesc": true,
+          "total": false,
+          "values": true
+        },
+        "lines": false,
+        "linewidth": 1,
+        "links": [],
+        "nullPointMode": "connected",
+        "options": {
+          "dataLinks": []
+        },
+        "percentage": false,
+        "pointradius": 5,
+        "points": false,
+        "renderer": "flot",
+        "seriesOverrides": [
+          {
+            "alias": "/.*sent/",
+            "transform": "negative-Y"
+          }
+        ],
+        "spaceLength": 10,
+        "stack": false,
+        "steppedLine": false,
+        "targets": [
+          {
+            "alias": "{{kubernetes.pod.name}} - received",
+            "bucketAggs": [
+              {
+                "fake": true,
+                "field": "kubernetes.pod.name",
+                "id": "3",
+                "settings": {
+                  "min_doc_count": 1,
+                  "order": "desc",
+                  "orderBy": "1",
+                  "size": "20"
+                },
+                "type": "terms"
+              },
+              {
+                "field": "@timestamp",
+                "id": "2",
+                "settings": {
+                  "interval": "10s",
+                  "min_doc_count": 1,
+                  "trimEdges": 0
+                },
+                "type": "date_histogram"
+              }
+            ],
+            "expr": "sort_desc(sum by (pod_name) (rate (container_network_receive_bytes_total{instance=~\"^$Node$\",name!=\"\", pod_name=~\".*\"}[1m]) ))",
+            "format": "time_series",
+            "interval": "10s",
+            "intervalFactor": 1,
+            "legendFormat": "{{ pod_name }}Reveived",
+            "metric": "",
+            "metrics": [
+              {
+                "field": "kubernetes.pod.network.rx.bytes",
+                "hide": true,
+                "id": "1",
+                "meta": {},
+                "settings": {},
+                "type": "max"
+              },
+              {
+                "field": "1",
+                "id": "4",
+                "meta": {},
+                "pipelineAgg": "1",
+                "settings": {
+                  "unit": "1s"
+                },
+                "type": "derivative"
+              }
+            ],
+            "query": "event.module: kubernetes  AND  metricset.name: pod AND host.name:$hostname AND cluster:$cluster AND kubernetes.pod.name:$pod",
+            "refId": "A",
+            "step": 10,
+            "timeField": "@timestamp"
+          },
+          {
+            "alias": "{{kubernetes.pod.name}} - sent",
+            "bucketAggs": [
+              {
+                "fake": true,
+                "field": "kubernetes.pod.name",
+                "id": "3",
+                "settings": {
+                  "min_doc_count": 1,
+                  "order": "desc",
+                  "orderBy": "1",
+                  "size": "20"
+                },
+                "type": "terms"
+              },
+              {
+                "field": "@timestamp",
+                "id": "2",
+                "settings": {
+                  "interval": "10s",
+                  "min_doc_count": 1,
+                  "trimEdges": 0
+                },
+                "type": "date_histogram"
+              }
+            ],
+            "expr": "- sort_desc(sum by (pod_name) (rate (container_network_transmit_bytes_total{instance=~\"^$Node$\",name!=\"\", pod_name=~\".*\"}[1m]) ))",
+            "format": "time_series",
+            "interval": "10s",
+            "intervalFactor": 1,
+            "legendFormat": "{{ pod_name }}Sent",
+            "metric": "",
+            "metrics": [
+              {
+                "field": "kubernetes.pod.network.tx.bytes",
+                "hide": true,
+                "id": "1",
+                "inlineScript": null,
+                "meta": {},
+                "settings": {},
+                "type": "max"
+              },
+              {
+                "field": "1",
+                "id": "4",
+                "meta": {},
+                "pipelineAgg": "1",
+                "settings": {
+                  "unit": "1s"
+                },
+                "type": "derivative"
+              }
+            ],
+            "query": "event.module: kubernetes  AND metricset.name: pod AND host.name:$hostname AND cluster:$cluster AND kubernetes.pod.name:$pod",
+            "refId": "B",
+            "step": 10,
+            "timeField": "@timestamp"
+          }
+        ],
+        "thresholds": [],
+        "timeFrom": null,
+        "timeRegions": [],
+        "timeShift": null,
+        "title": "Pod Network i/o",
+        "tooltip": {
+          "msResolution": false,
+          "shared": true,
+          "sort": 0,
+          "value_type": "cumulative"
+        },
+        "type": "graph",
+        "x-axis": true,
+        "xaxis": {
+          "buckets": null,
+          "mode": "time",
+          "name": null,
+          "show": true,
+          "values": []
+        },
+        "y-axis": true,
+        "y_formats": [
+          "short",
+          "short"
+        ],
+        "yaxes": [
+          {
+            "format": "Bps",
+            "label": "",
+            "logBase": 1,
+            "max": null,
+            "min": null,
+            "show": true
+          },
+          {
+            "format": "short",
+            "label": "",
+            "logBase": 1,
+            "max": null,
+            "min": null,
+            "show": true
+          }
+        ],
+        "yaxis": {
+          "align": false,
+          "alignLevel": null
+        }
+      }
+    ],
+    "refresh": false,
+    "schemaVersion": 21,
+    "style": "dark",
+    "tags": [
+      "kubernetes",
+      "elasticsearch",
+      "metricbeat 7.3.2"
+    ],
+    "templating": {
+      "list": [
+        {
+          "current": {
+            "text": "Yogev-Metrics",
+            "value": "Yogev-Metrics"
+          },
+          "hide": 0,
+          "includeAll": false,
+          "label": null,
+          "multi": false,
+          "name": "Source",
+          "options": [],
+          "query": "elasticsearch",
+          "refresh": 1,
+          "regex": "",
+          "skipUrlSync": false,
+          "type": "datasource"
+        },
+        {
+          "allValue": "*",
+          "current": {
+            "selected": false,
+            "text": "All",
+            "value": "$__all"
+          },
+          "datasource": "$Source",
+          "definition": "{\"find\": \"terms\", \"field\": \"cluster\"}",
+          "hide": 0,
+          "includeAll": true,
+          "label": "Cluster",
+          "multi": true,
+          "name": "cluster",
+          "options": [],
+          "query": "{\"find\": \"terms\", \"field\": \"cluster\"}",
+          "refresh": 1,
+          "regex": "",
+          "skipUrlSync": false,
+          "sort": 0,
+          "tagValuesQuery": "",
+          "tags": [],
+          "tagsQuery": "",
+          "type": "query",
+          "useTags": false
+        },
+        {
+          "allValue": null,
+          "current": {
+            "text": "kube-system",
+            "value": "kube-system"
+          },
+          "datasource": "$Source",
+          "definition": "{\"find\": \"terms\", \"field\": \"kubernetes.namespace\", \"size\": 300, \"query\": \"cluster:$cluster\"}",
+          "hide": 0,
+          "includeAll": false,
+          "label": "Namespace",
+          "multi": true,
+          "name": "namespace",
+          "options": [],
+          "query": "{\"find\": \"terms\", \"field\": \"kubernetes.namespace\", \"size\": 300, \"query\": \"cluster:$cluster\"}",
+          "refresh": 1,
+          "regex": "",
+          "skipUrlSync": false,
+          "sort": 0,
+          "tagValuesQuery": "",
+          "tags": [],
+          "tagsQuery": "",
+          "type": "query",
+          "useTags": false
+        },
+        {
+          "allValue": "",
+          "current": {
+            "selected": false,
+            "text": "All",
+            "value": "$__all"
+          },
+          "datasource": "$Source",
+          "definition": "{\"find\": \"terms\", \"field\": \"host.name\", \"query\":\"kubernetes.namespace:$namespace\", \"size\": 300}",
+          "hide": 0,
+          "includeAll": true,
+          "label": null,
+          "multi": true,
+          "name": "hostname",
+          "options": [],
+          "query": "{\"find\": \"terms\", \"field\": \"host.name\", \"query\":\"kubernetes.namespace:$namespace\", \"size\": 300}",
+          "refresh": 1,
+          "regex": "",
+          "skipUrlSync": false,
+          "sort": 0,
+          "tagValuesQuery": "",
+          "tags": [],
+          "tagsQuery": "",
+          "type": "query",
+          "useTags": false
+        },
+        {
+          "allValue": "",
+          "current": {
+            "selected": false,
+            "text": "All",
+            "value": "$__all"
+          },
+          "datasource": "$Source",
+          "definition": "",
+          "hide": 0,
+          "includeAll": true,
+          "label": null,
+          "multi": false,
+          "name": "container",
+          "options": [],
+          "query": "{\"find\": \"terms\", \"field\": \"kubernetes.container.name\", \"size\": 300, \"query\":\"host.name:$hostname AND cluster:$cluster\"}",
+          "refresh": 1,
+          "regex": "",
+          "skipUrlSync": false,
+          "sort": 0,
+          "tagValuesQuery": "",
+          "tags": [],
+          "tagsQuery": "",
+          "type": "query",
+          "useTags": false
+        },
+        {
+          "allValue": "/.*/",
+          "current": {
+            "selected": false,
+            "text": "All",
+            "value": "$__all"
+          },
+          "datasource": "$Source",
+          "definition": "{\"find\": \"terms\", \"field\": \"kubernetes.pod.name\", \"size\": 300, \"query\":\"metricset.name:container AND kubernetes.container.name:$container AND cluster:$cluster\"}",
+          "hide": 2,
+          "includeAll": true,
+          "label": "Pod",
+          "multi": false,
+          "name": "pod",
+          "options": [],
+          "query": "{\"find\": \"terms\", \"field\": \"kubernetes.pod.name\", \"size\": 300, \"query\":\"metricset.name:container AND kubernetes.container.name:$container AND cluster:$cluster\"}",
+          "refresh": 1,
+          "regex": "",
+          "skipUrlSync": false,
+          "sort": 0,
+          "tagValuesQuery": "",
+          "tags": [],
+          "tagsQuery": "",
+          "type": "query",
+          "useTags": false
+        }
+      ]
+    },
+    "time": {
+      "from": "now-15m",
+      "to": "now"
+    },
+    "timepicker": {
+      "now": true,
+      "nowDelay": "",
+      "refresh_intervals": [
+        "5s",
+        "10s",
+        "30s",
+        "1m",
+        "5m",
+        "15m",
+        "30m",
+        "1h",
+        "2h",
+        "1d"
+      ],
+      "time_options": [
+        "5m",
+        "15m",
+        "1h",
+        "6h",
+        "12h",
+        "24h",
+        "2d",
+        "7d",
+        "30d"
+      ]
+    },
+    "timezone": "browser",
+    "title": "K8S Cluster",
+    "uid": "pSsWnIjmz",
+    "version": 47
+  }
